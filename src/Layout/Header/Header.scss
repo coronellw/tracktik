@@ -1,0 +1,38 @@
+.header {
+  align-items: center;
+  background-color: #2a77e4;
+  border: 1px solid #2f343e;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0rem;
+
+  &__menu {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: .75rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    color: #e7e7e7;
+    text-transform: capitalize;
+    font-weight: 500;
+  }
+
+  &__other {
+    display: flex;
+    align-items: center;
+
+    .grid {
+      font-size: 2rem;
+      color: #2f343e;
+    }
+  }
+
+  &__photo {
+    padding: .7rem;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 0 .75rem;
+  }
+}
