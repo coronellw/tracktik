@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import SubTitle from '../../Shared/SubTitle/SubTitle';
+import Heading from '../../Shared/Heading/Heading';
+import SubHeading from '../../Shared/SubHeading/SubHeading';
 import './Sites.scss'
 
 function Sites() {
@@ -55,11 +58,17 @@ function Sites() {
 
   return (
     <div className="sites">
-      <div className="sites__title">Sites</div>
+      <SubTitle>Sites</SubTitle>
       {loading && <span className="sites__loading">Fetching sites, please wait...</span>}
       {!loading &&(
         <>
-          <span></span>
+          <span className="sites__bar top-bar">
+            <span className="top-bar__filter">filter</span>
+            <span className="top-bar__search">search</span>
+          </span>
+
+          <Heading>Heading example</Heading>
+          <SubHeading>Subheading example</SubHeading>
           <ul className="list">
             {sitesElement}
           </ul>
