@@ -7,6 +7,16 @@
   background-color: #e7e7e7c5;
   z-index: 10;
 
+  &.hide {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
   &__list {
     padding: 0;
     margin: 0;

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import SubTitle from '../../Shared/SubTitle/SubTitle';
 import {
   SubHeading,
   Emphasis,
-  Paragraph,
   Heading,
   SearchIcon,
   Dropdown,
 } from '../../Shared';
+import { getAddress, getImage, getMainContact } from '../../Utils/SiteUtils';
 import './Sites.scss'
 
 function Sites() {
@@ -18,12 +19,14 @@ function Sites() {
   const [sites, setSites] = useState([]);
   const [dropdownOptions, setDropdownOptions] = useState([]);
 
+  const history = useHistory();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get('https://tracktik-challenge.staffr.com/sites', { params: { _limit: 20 } });
         setSites(data);
-        const options = Array.isArray ? data.map(site => ({label: site.title, value: site.id})) : [];
+        const options = Array.isArray ? data.map(site => ({ label: site.title, value: site.id })) : [];
         setDropdownOptions(options);
         setLoading(false);
       } catch (error) {
@@ -35,23 +38,10 @@ function Sites() {
     fetchData();
   }, []);
 
-  const getAddress = ({ street }) => <Emphasis>{street}</Emphasis>;
-
-  const getMainContact = ({ firstName, lastName }) => (firstName || lastName) && <Paragraph>{firstName} {lastName}</Paragraph>;
-
-  const getImage = (images, alt) => {
-    let src = '';
-    if (Array.isArray(images) && images.length) {
-      // if there is any image grab it!
-      src = images[0];
-    }
-
-    //TODO support image for firefox, look for workaround
-    return src ? <img className="thumbnail" src={src} alt={alt} /> : null;
-  }
+  const handleRedirect = site => history.push(`/sites/${site.id}`);
 
   const sitesElement = Array.isArray(sites) && sites.map(site => (
-    <li key={site.id} className="site">
+    <li key={site.id} className="site" onClick={() => handleRedirect(site)}>
       <span className="site__image">
         {getImage(site.images, site.title)}
       </span>
@@ -82,7 +72,7 @@ function Sites() {
                 <Dropdown
                   // label="Site: "
                   options={dropdownOptions}
-                  defaultOption={{label: 'All Sites', value: undefined}}
+                  defaultOption={{ label: 'All Sites', value: undefined }}
                 />
               </span>
               <span className="top-bar__search"><SearchIcon /></span>

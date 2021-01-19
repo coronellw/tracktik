@@ -1,13 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { toggleMenu } from '../../Store/actions'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faTh, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Title } from '../../Shared';
 import './Header.scss';
 
-function Header() {
+function Header(props) {
+  const { toggleMenu } = props;
   return (
     <div className="header">
-      <div className="header__menu"><Icon icon={faBars} /></div>
+      <div className="header__menu"><Icon icon={faBars} onClick={toggleMenu} /></div>
       <Title>Scheduling</Title>
       <div className="header__other">
         <span className="grid"><Icon icon={faTh}/></span>
@@ -17,4 +20,4 @@ function Header() {
   )
 }
 
-export default Header;
+export default connect(undefined, { toggleMenu })(Header);

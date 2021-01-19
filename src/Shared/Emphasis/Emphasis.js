@@ -1,9 +1,9 @@
 import React from 'react';
 import './Emphasis.scss';
 
-function Emphasis({children}) {
+function Emphasis({children, classes}) {
   return (
-    <span className="emphasis">
+    <span className={`emphasis ${Array.isArray(classes) ? classes.join(' '):''}`}>
       {children}
     </span>
   )
