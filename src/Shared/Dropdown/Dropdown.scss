@@ -1,0 +1,31 @@
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+
+  label {
+    color: var(--light-color);
+    font-size: 1.6rem;
+    margin-right: 1rem;
+    letter-spacing: .2rem;
+  }
+
+  select {
+    display: none;
+  }
+
+  .selected-value {
+    background-color: var(--light-color);
+    padding: 1rem;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    &__label {
+      color: var(--dark-color);
+      font-size: 1.6rem;
+    }
+  }
+}

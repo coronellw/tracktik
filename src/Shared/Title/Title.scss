@@ -1,0 +1,10 @@
+.title {
+  padding: 0;
+  margin: 0;
+  font-size: 4rem;
+  color: var(--light-color);
+
+  &.dark {
+    color: var(--dark-color);
+  }
+}

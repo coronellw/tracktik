@@ -1,0 +1,29 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 75vw;
+  background-color: #e7e7e7c5;
+  z-index: 10;
+
+  &__list {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    background-color: var(--light-color);
+    padding: 2rem;
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid #404040;
+    }
+
+    a, a:visited {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: var(--secondary-color);
+    }
+  }
+} 
