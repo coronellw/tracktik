@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faMapMarkerAlt, faPhoneAlt, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import './SiteDetails.scss';
+import { setSite } from '../../Store/actions';
 import { Emphasis, Heading, SubTitle } from '../../Shared';
 import { getAddress, getImage, getMainContact } from '../../Utils/SiteUtils';
+import './SiteDetails.scss';
 
-function SiteDetails() {
-  const [site, setSite] = useState();
+function SiteDetails(props) {
+  // const [site, setSite] = useState();
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   let { id } = useParams();
 
+  const { site, setSite } = props;
+
   useEffect(() => {
+    // if there is a site in the store and the site id is equal to the id gathered from the url then there is no need to reload the site information
+    if(site && site.id && site.id === id) {
+      setLoading(false);
+      return;
+    }
     const fetchData = async () => {
       try {
         const { data } = await axios.get('https://tracktik-challenge.staffr.com/sites', { params: { id } });
@@ -91,4 +100,9 @@ function SiteDetails() {
   )
 }
 
-export default SiteDetails
+const mapStateToProps = (state) => {
+  const { site } = state.sites;
+  return { site }
+}
+
+export default connect(mapStateToProps, { setSite })(SiteDetails)

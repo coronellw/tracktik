@@ -14,7 +14,7 @@ function Header(props) {
       <Title>Scheduling</Title>
       <div className="header__other">
         <span className="grid"><Icon icon={faTh}/></span>
-        <span className="header__photo">D</span>
+        <span className="header__photo">W</span>
       </div>
     </div>
   )
