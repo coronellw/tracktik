@@ -11,7 +11,7 @@ function Header(props) {
   return (
     <div className="header">
       <div className="header__menu"><Icon icon={faBars} onClick={toggleMenu} /></div>
-      <Title>Scheduling</Title>
+      <Title>Siter</Title>
       <div className="header__other">
         <span className="grid"><Icon icon={faTh}/></span>
         <span className="header__photo">W</span>

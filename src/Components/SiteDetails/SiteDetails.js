@@ -38,7 +38,7 @@ function SiteDetails(props) {
     }
 
     fetchData();
-  }, [id]);
+  }, [id, site, setSite]);
 
   return (
     <div className="site-details">
